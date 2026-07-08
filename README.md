@@ -1,10 +1,30 @@
-# AIS-OS - kit inicial de Sistema Operacional de IA para Claude Code
+# AIS-OS - kit inicial de Sistema Operacional de IA para o seu agente de terminal
 
-Um kit inicial gratuito, licenciado sob MIT, que transforma o Claude Code no seu **Sistema Operacional de IA (AIOS)** pessoal. Público: qualquer pessoa criando automações, incluindo empreendedores solo, operadores de pequenos negócios, gestores, criadores e consultores de IA. Acompanha uma masterclass em vídeo.
+Um kit inicial gratuito, licenciado sob MIT, que transforma o seu agente de IA de terminal (Claude Code, Codex CLI, OpenCode, Gemini CLI, Cursor...) no seu **Sistema Operacional de IA (AIOS)** pessoal. Público: qualquer pessoa criando automações, incluindo empreendedores solo, operadores de pequenos negócios, gestores, criadores e consultores de IA. Acompanha uma masterclass em vídeo.
 
 O kit se personaliza para você por meio de uma entrevista `/onboard` e depois entrega duas habilidades recorrentes de pensamento (`/audit`, `/level-up`) para continuar criando alavancagem semana após semana.
 
 > **AIS-OS** significa **AI Automation Society OS** - a forma como Nate projetou este AIOS para ser configurado por membros da comunidade dele, [AI Automation Society](https://www.skool.com/ai-automation-society). O kit é universal, funciona para qualquer pessoa, mas a estrutura espelha como membros da AIS operam seus próprios negócios em cima dele.
+
+---
+
+## Funciona com qualquer IA
+
+O kit nasceu no Claude Code, mas o manual operacional segue o padrão aberto **AGENTS.md** e as habilidades são markdown puro. Resultado: o mesmo repositório roda em qualquer agente de terminal.
+
+| Ferramenta | Manual que ela lê | Como invocar as habilidades |
+|---|---|---|
+| **Claude Code** | `CLAUDE.md` (importa `AGENTS.md`) | `/onboard`, `/audit`, `/level-up` nativos via `.claude/skills/` |
+| **OpenAI Codex CLI** | `AGENTS.md` | Peça em linguagem natural ("faça meu onboarding"). Prompts em `.codex/prompts/` - se a sua versão não carregar prompts do projeto, copie-os para `~/.codex/prompts/` e use `/onboard` |
+| **OpenCode** | `AGENTS.md` | `/onboard`, `/audit`, `/level-up` nativos via `.opencode/command/` |
+| **Gemini CLI** | `GEMINI.md` (importa `AGENTS.md`) | `/onboard`, `/audit`, `/level-up` nativos via `.gemini/commands/` |
+| **Cursor / Copilot / Amp / outros** | `AGENTS.md` | Peça em linguagem natural - o `AGENTS.md` roteia para o arquivo da habilidade |
+
+Três regras mantêm isso sustentável:
+
+1. **`AGENTS.md` é o manual canônico.** `CLAUDE.md` e `GEMINI.md` apenas o importam. Edite sempre o `AGENTS.md`.
+2. **`.claude/skills/*/SKILL.md` é a fonte única de cada habilidade.** Os arquivos em `.codex/`, `.opencode/` e `.gemini/` são wrappers finos que mandam ler o SKILL.md. Nunca duplique a lógica neles.
+3. **Linguagem natural sempre funciona.** Mesmo numa ferramenta sem comandos de barra, dizer "audite meu AIOS" dispara a habilidade - o `AGENTS.md` ensina a IA a rotear.
 
 ---
 
@@ -88,7 +108,7 @@ O kit é intencionalmente enxuto. As habilidades aqui são prompts de ideação 
 ## Começo rápido
 
 1. **Clone o repositório** para uma pasta de trabalho na sua máquina.
-2. **Abra no Claude Code** e execute `/onboard`. Responda às 7 perguntas com honestidade. Amostras de voz devem ser coladas, não descritas. Leva cerca de 15 minutos. O conjunto de arquivos do Dia 1 é criado ao final.
+2. **Abra na sua IA de terminal** (Claude Code, Codex, OpenCode, Gemini CLI...) e execute `/onboard` - ou peça "faça meu onboarding". Responda às 7 perguntas com honestidade. Amostras de voz devem ser coladas, não descritas. Leva cerca de 15 minutos. O conjunto de arquivos do Dia 1 é criado ao final.
 3. **Use por uma semana.** Traga perguntas reais. Tome decisões reais. Registre-as via `/decision` ou apenas acrescente em `decisoes/registro.md`.
 4. **Dia 7:** execute `/audit`. Leia o relatório de lacunas dos Quatro Cs. Escolha uma lacuna para fechar.
 5. **Dia 14:** execute `/level-up`. A entrevista dos Três Ms revela uma automação que vale construir. Construa.
@@ -100,8 +120,10 @@ O kit é intencionalmente enxuto. As habilidades aqui são prompts de ideação 
 
 ```
 AIS-OS/
-├── LEIA-ME.md
-├── CLAUDE.md                        <- Seu manual operacional (preenchido pelo /onboard)
+├── README.md
+├── AGENTS.md                        <- Seu manual operacional canônico (preenchido pelo /onboard)
+├── CLAUDE.md                        <- Espelho para Claude Code (importa AGENTS.md)
+├── GEMINI.md                        <- Espelho para Gemini CLI (importa AGENTS.md)
 ├── EXPANSOES.md                     <- O que adicionar conforme você cresce
 ├── LICENCA
 ├── .gitignore
@@ -113,11 +135,14 @@ AIS-OS/
 ├── decisoes/
 │   └── registro.md                  <- Registro somente de acréscimo do que foi decidido e por quê
 ├── arquivos/                        <- Coisas antigas. Não exclua. Mova para cá.
-└── .claude/
-    └── skills/
-        ├── onboard/SKILL.md
-        ├── audit/SKILL.md
-        └── level-up/SKILL.md
+├── .claude/
+│   └── skills/                      <- Fonte única das habilidades (markdown puro)
+│       ├── onboard/SKILL.md
+│       ├── audit/SKILL.md
+│       └── level-up/SKILL.md
+├── .codex/prompts/                  <- Atalhos /onboard /audit /level-up para Codex CLI
+├── .opencode/command/               <- Atalhos para OpenCode
+└── .gemini/commands/                <- Atalhos para Gemini CLI
 ```
 
 Veja `EXPANSOES.md` para saber o que adicionar conforme cresce (`projetos/`, `modelos/`, `scripts/`, `.claude/agents/`, pastas sub-OS etc.).

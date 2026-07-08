@@ -1,0 +1,1 @@
+Leia o arquivo `.claude/skills/audit/SKILL.md` e siga as instruções exatamente, do início ao fim. Ele é a fonte única desta habilidade (Auditoria dos Quatro Cs: placar 0-100 do AIOS com top 3 lacunas) - este arquivo é só um atalho. Onde o arquivo usar a sintaxe `` !`comando` `` (contexto dinâmico do Claude Code), execute o comando no shell e use a saída.

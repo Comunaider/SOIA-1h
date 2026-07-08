@@ -18,7 +18,7 @@ Identidade, oferta, ICP. Um parágrafo para cada é suficiente.
 
 ## Q2 - Cole 1-2 coisas que você escreveu recentemente. Não edite.
 
-Um e-mail, um post no LinkedIn, uma DM, um documento - qualquer coisa que soe como você quando não está tentando forçar. **Cole literalmente.** Não digite esses textos no meio da conversa com o Claude - amostras moldadas por chat são piores do que nenhuma amostra (contaminação de voz).
+Um e-mail, um post no LinkedIn, uma DM, um documento - qualquer coisa que soe como você quando não está tentando forçar. **Cole literalmente.** Não digite esses textos no meio da conversa com a IA - amostras moldadas por chat são piores do que nenhuma amostra (contaminação de voz).
 
 ```
 [Amostra 1 - cole o texto bruto]
@@ -82,4 +82,4 @@ A maior fonte única de perda de tempo ou tarefa recorrente chata. Além disso, 
 
 ---
 
-Quando este arquivo estiver preenchido, execute `/onboard` ou execute novamente. O assistente montará seu conjunto de arquivos do Dia 1: `contexto/`, `referencias/voz.md`, `conexoes.md` preenchido e `CLAUDE.md` preenchido.
+Quando este arquivo estiver preenchido, execute `/onboard` ou execute novamente. O assistente montará seu conjunto de arquivos do Dia 1: `contexto/`, `referencias/voz.md`, `conexoes.md` preenchido e `AGENTS.md` preenchido.

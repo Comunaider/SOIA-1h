@@ -17,7 +17,7 @@ A estrutura do AIOS deve parecer uma pequena empresa bem administrada. Não o po
 | `conexoes.md` | Registro de todo sistema que seu AIOS pode acessar. |
 | `.claude/skills/` | Suas habilidades: `/onboard`, `/audit`, `/level-up`. Adicione mais via `/level-up`. |
 | `entrada-aios.md` | Fonte da verdade para `/onboard`. Edite e execute novamente quando quiser. |
-| `CLAUDE.md` | Manual operacional raiz. Preenchido por `/onboard`. Edite quando seu papel/voz mudar. |
+| `AGENTS.md` | Manual operacional raiz (padrão multi-IA). Preenchido por `/onboard`. Edite quando seu papel/voz mudar. `CLAUDE.md` e `GEMINI.md` são espelhos que apenas o importam. |
 
 ---
 
@@ -31,7 +31,7 @@ A estrutura do AIOS deve parecer uma pequena empresa bem administrada. Não o po
 | `referencias/sops/` | Você documenta como processos recorrentes rodam | Procedimentos operacionais padrão que o AIOS lê para executar com consistência |
 | `referencias/{ferramenta}-api.md` | Você conecta uma nova API ou MCP e descobre como ela funciona | Pesquisado uma vez, salvo para sempre. `/audit` recompensa isso; habilidades futuras não pesquisam tudo de novo. |
 | `scripts/` | Você escreve Python ou Bash para chamar APIs não cobertas por MCPs | A segunda conexão da maioria das pessoas é um script, não um MCP |
-| `.claude/agents/` | Você precisa de um subassistente para pesquisa/escrita repetível de várias etapas | Agentes rodam em modelos mais baratos no próprio contexto - mantenha a sessão principal enxuta |
+| `.claude/agents/` | Você precisa de um subassistente para pesquisa/escrita repetível de várias etapas | Agentes rodam em modelos mais baratos no próprio contexto - mantenha a sessão principal enxuta (no OpenCode o equivalente é `.opencode/agent/`) |
 | Pastas sub-OS (ex.: `youtube-os/`) | Você tem uma vertical com dados, planilhas, transcrições e scripts próprios | Padrão de isolamento - workflows verticais recebem seu próprio manual operacional delimitado + habilidades |
 
 ---
@@ -45,7 +45,7 @@ Quando cada superfície é tocada rotineiramente:
 - `referencias/sops/` - quando um processo for reexecutado por alguém novo, escreva a SOP
 - `conexoes.md` - toda vez que uma nova ferramenta for conectada, adicione uma linha
 - `referencias/{ferramenta}-api.md` - no mesmo momento da atualização de `conexoes.md`; capture a API uma vez
-- `CLAUDE.md` - revisão trimestral; reescreva a seção de persona/prioridades após `/level-up` Q90
+- `AGENTS.md` - revisão trimestral; reescreva a seção de persona/prioridades após `/level-up` Q90
 
 ---
 
@@ -58,7 +58,7 @@ Antipadrões. Parecem úteis, mas apodrecem a estrutura:
 - **Não adicione `notas/`, `misc/`, `tmp/` ou `entrada/`.** Cemitérios. Use `arquivos/` se for antigo; escreva um arquivo real no lugar certo se for novo.
 - **Não pré-crie pastas de que ainda não precisa.** Pastas vazias são ruído. O AIOS dirá quando for hora.
 - **Não mantenha `decisoes.md` e `decisoes/registro.md` paralelos.** Escolha um. O kit vem com `decisoes/registro.md`.
-- **Não bifurque seu manual operacional.** Um `CLAUDE.md` na raiz. Pastas sub-OS podem ter o próprio `CLAUDE.md` delimitado, mas a raiz é canônica.
+- **Não bifurque seu manual operacional.** Um `AGENTS.md` na raiz (com `CLAUDE.md`/`GEMINI.md` apenas importando). Pastas sub-OS podem ter o próprio manual delimitado, mas a raiz é canônica.
 
 ---
 

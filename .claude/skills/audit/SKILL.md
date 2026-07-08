@@ -5,7 +5,7 @@ description: Use quando alguém pede uma auditoria do AIOS, pede pontuação da 
 
 ## O que esta habilidade faz
 
-Roda a **Auditoria dos Quatro Cs** no projeto atual do Claude Code. Lê (nunca escreve) o manual operacional do projeto, memória, habilidades, agentes, MCPs, decisões e referências. Dá nota de 0 a 25 para cada um dos Quatro Cs. Mostra pontos fortes e as 3 principais lacunas ponderadas por alavancagem, com comandos concretos de próximo passo.
+Roda a **Auditoria dos Quatro Cs** no projeto atual. Funciona em qualquer agente de IA que leia esta habilidade (Claude Code, Codex, OpenCode, Gemini CLI etc.). Lê (nunca escreve) o manual operacional do projeto, memória, habilidades, agentes, MCPs, decisões e referências. Dá nota de 0 a 25 para cada um dos Quatro Cs. Mostra pontos fortes e as 3 principais lacunas ponderadas por alavancagem, com comandos concretos de próximo passo.
 
 **O escopo é estrutural - "o AIOS foi construído corretamente?"** Não é planejador de capacidades. Lacunas de capacidade ("você poderia criar um resumo diário se conectasse o calendário") pertencem a `/level-up`. A auditoria responde: arquivos, pastas, registros e conexões estão em bom estado?
 
@@ -31,12 +31,12 @@ A primeira execução é a linha de base. Reexecute semanalmente para ver a pont
 
 A auditoria procura **padrões e intenção**, não caminhos exatos. Nomes de arquivo variam. Use Glob e Read para verificar:
 
-**Manual operacional:** `CLAUDE.md` (raiz), `CLAUDE.local.md` (gitignored).
+**Manual operacional:** `AGENTS.md` (raiz, canônico), `CLAUDE.md` / `GEMINI.md` (espelhos que só importam), `CLAUDE.local.md` (gitignored).
 **Memória:** `MEMORY.md` (raiz), `~/.claude/projects/<id>/memory/MEMORY.md` ou pasta `memory/`.
-**Habilidades:** `.claude/skills/*/SKILL.md` - contagem + frontmatter.
+**Habilidades:** `.claude/skills/*/SKILL.md` - contagem + frontmatter. Wrappers em `.codex/prompts/`, `.opencode/command/` e `.gemini/commands/` apontam para a mesma habilidade - não conte em dobro.
 **Agentes:** `.claude/agents/*.md` - contagem + frontmatter.
 **Mecanismos de conexão** (qualquer um destes = "acessível"):
-- MCPs: `.mcp.json`, `.claude/settings.json` (chave mcpServers), `.claude/settings.local.json`
+- MCPs: `.mcp.json`, `.claude/settings.json` (chave mcpServers), `.claude/settings.local.json`, `.codex/config.toml`, `opencode.json`, `.gemini/settings.json`
 - Scripts de API: `scripts/*.py|.js|.ts` documentados em CLAUDE.md
 - Pipelines de exportação: `data/`, `imports/`, `exports/` com script de atualização + timestamp da última execução
 - Chaves de API + guia de referência: entradas `.env` + `referencias/{ferramenta}-api.md` correspondente
@@ -56,8 +56,8 @@ Não penalize nomes não canônicos se a intenção equivalente estiver capturad
 
 | Critério | Pontos | Como detectar |
 |---|---|---|
-| Manual operacional existe e é substancial (>200 palavras) | 5 | Leia CLAUDE.md, conte palavras |
-| Identidade / papel / voz capturados | 5 | CLAUDE.md menciona quem é o usuário + papel/missão, OU `.claude/rules/*.md` existe |
+| Manual operacional existe e é substancial (>200 palavras) | 5 | Leia AGENTS.md (ou CLAUDE.md, se não houver AGENTS.md), conte palavras |
+| Identidade / papel / voz capturados | 5 | AGENTS.md (ou CLAUDE.md) menciona quem é o usuário + papel/missão, OU `.claude/rules/*.md` existe |
 | Memória persistente existe com várias entradas | 5 | MEMORY.md existe com >3 entradas, OU `memory/` tem >3 arquivos |
 | Documentos de referência existem | 5 | `referencias/`, `docs/` ou `sops/` tem >=1 arquivo |
 | Decisões capturadas | 5 | `decisoes/registro.md` ou equivalente tem >=1 entrada |
@@ -122,7 +122,7 @@ Para cada critério que perdeu pontos: alavancagem = (pontos perdidos) x (multip
 Ordene lacunas por alavancagem decrescente. Pegue as 3 principais. Para cada uma, escreva um próximo passo concreto em uma linha:
 - **Precisa de uma nova habilidade?** Recomende `skill-creator` (Anthropic) ou `skill-builder` (se local), ou "escreva SKILL.md em `.claude/skills/<name>/SKILL.md` com frontmatter YAML."
 - **Precisa registrar uma decisão?** "Acrescente em `decisoes/registro.md`."
-- **Precisa acessar um domínio tier-1?** Prefira API+script (escreva `scripts/{ferramenta}_api.py` + salve `referencias/{ferramenta}-api.md`). Recomende `claude mcp add` somente se não houver caminho por API.
+- **Precisa acessar um domínio tier-1?** Prefira API+script (escreva `scripts/{ferramenta}_api.py` + salve `referencias/{ferramenta}-api.md`). Recomende MCP (`claude mcp add`, `codex mcp add` ou o equivalente da sua ferramenta) somente se não houver caminho por API.
 - **Ferramenta conectada sem guia de referência?** "Pesquise a API uma vez, salve endpoints + auth + consultas comuns em `referencias/{ferramenta}-api.md`."
 - **Precisa de gatilho recorrente?** "Adicione um hook em `.claude/settings.json`, ou escreva uma habilidade chamada `daily-*` que você roda toda manhã."
 
@@ -172,7 +172,7 @@ Depois de imprimir, pergunte: "Salvar esta auditoria em `auditorias/auditoria-{d
 
 ## Observações
 
-- **Somente leitura por padrão.** Nunca modifique CLAUDE.md, memória, habilidades ou arquivos do projeto. A única escrita opcional é o relatório de auditoria.
+- **Somente leitura por padrão.** Nunca modifique AGENTS.md/CLAUDE.md, memória, habilidades ou arquivos do projeto. A única escrita opcional é o relatório de auditoria.
 - **Seja flexível com nomes de arquivo.** Não penalize nomes não canônicos se a intenção estiver capturada.
 - **Seja honesto, não generoso.** 95/100 é um flex. A maioria das configurações cai entre 40-70.
 - **Não sugira habilidades que não existem.** Aponte para o que está realmente disponível.

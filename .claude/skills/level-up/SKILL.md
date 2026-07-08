@@ -108,7 +108,7 @@ Pergunte: *"Como você quer entregar isto?"* Opções ordenadas pelo padrão Cha
 Depois de escolhido, direcione ao scaffolder apropriado:
 - `skill-creator` se disponível globalmente (enviado pela Anthropic)
 - `skill-builder` se o usuário tiver localmente
-- Caso contrário, escreva um SKILL.md / arquivo de agente diretamente com frontmatter, localização e conteúdo
+- Caso contrário, escreva um SKILL.md / arquivo de agente diretamente com frontmatter, localização e conteúdo. Se o operador usa outras IAs além do Claude Code, crie também wrappers finos em `.codex/prompts/`, `.opencode/command/` e `.gemini/commands/` apontando para o novo SKILL.md (padrão do kit - a lógica vive num lugar só)
 
 **Todo artefato montado vem com estes dois cabeçalhos no topo:**
 
