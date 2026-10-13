@@ -64,7 +64,7 @@ Quando o intake estiver completo, gere estes arquivos (ou atualize se estiver re
 3. **`contexto/prioridades.md`** - a partir da Q3. Lista numerada, uma linha por prioridade.
 4. **`referencias/voz.md`** - a partir da Q2. Cole amostras literalmente com um cabeçalho curto explicando o uso ("Combine este registro ao rascunhar; não finja a voz em conteúdo externo sem me mostrar primeiro").
 5. **`conexoes.md`** - preencha a tabela de 7 linhas a partir das respostas Q4-Q7. Cada linha recebe `mecanismo: ainda não conectado`, `autenticação: -`, `última verificação: -`. O usuário conecta ferramentas no Dia 2.
-6. **`AGENTS.md`** - preencha todos os placeholders `{{...}}`. Substitua o nome do usuário, prioridade declarada, resumo do registro de voz e um breve resumo de conexões. Não toque em `CLAUDE.md` nem `GEMINI.md` - são espelhos que apenas importam `AGENTS.md`.
+6. **`AGENTS.md`** - preencha todos os placeholders `{{...}}`, incluindo a seção Voz com traços tirados das amostras da Q2 (nunca um estilo genérico). Substitua o nome do usuário, prioridade declarada, resumo do registro de voz e um breve resumo de conexões. Não toque em `CLAUDE.md` nem `GEMINI.md` - são espelhos que apenas importam `AGENTS.md`.
 
 ### Etapa 4: A tela de fechamento
 

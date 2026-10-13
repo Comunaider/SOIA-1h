@@ -1,68 +1,91 @@
-# AIS-OS - kit inicial de Sistema Operacional de IA para o seu agente de terminal
+# SOIA - kit inicial do seu Sistema Operacional de IA
 
-Um kit inicial gratuito, licenciado sob MIT, que transforma o seu agente de IA de terminal (Claude Code, Codex CLI, OpenCode, Gemini CLI, Cursor...) no seu **Sistema Operacional de IA (AIOS)** pessoal. Público: qualquer pessoa criando automações, incluindo empreendedores solo, operadores de pequenos negócios, gestores, criadores e consultores de IA. Acompanha uma masterclass em vídeo.
+Kit gratuito, licença MIT, que transforma o seu agente de IA de terminal (Claude Code, Codex, OpenCode, Gemini CLI, Cursor...) no seu **Sistema Operacional de IA (SOIA)** pessoal. Feito para donos de pequenos negócios, profissionais solo, gestores e criadores que querem usar IA no trabalho de verdade, não só no chat.
 
-O kit se personaliza para você por meio de uma entrevista `/onboard` e depois entrega duas habilidades recorrentes de pensamento (`/audit`, `/level-up`) para continuar criando alavancagem semana após semana.
+O kit se personaliza para você numa entrevista (`/onboard`) e depois entrega duas habilidades semanais (`/audit`, `/level-up`) para você continuar evoluindo o sistema.
 
-> **AIS-OS** significa **AI Automation Society OS** - a forma como Nate projetou este AIOS para ser configurado por membros da comunidade dele, [AI Automation Society](https://www.skool.com/ai-automation-society). O kit é universal, funciona para qualquer pessoa, mas a estrutura espelha como membros da AIS operam seus próprios negócios em cima dele.
+Mantido por **Gustavo Schineider** e usado no curso e nas instalações 1:1. Baseado no **AIS-OS**, kit aberto de Nate Herk ([AI Automation Society](https://www.skool.com/ai-automation-society)), adaptado para português e para a realidade de negócio brasileira (WhatsApp, Pix, planilha).
+
+---
+
+## Antes de começar
+
+Você precisa de três coisas instaladas:
+
+1. **VS Code** - [code.visualstudio.com](https://code.visualstudio.com)
+2. **Git** - [git-scm.com/downloads](https://git-scm.com/downloads)
+3. **Um agente de terminal.** O caminho recomendado é o Claude Code (exige plano pago da Anthropic, Pro ou superior):
+   - Windows (PowerShell): `irm https://claude.ai/install.ps1 | iex`
+   - macOS / Linux: `curl -fsSL https://claude.ai/install.sh | bash`
+   - Teste: abra um terminal novo, digite `claude` e faça uma pergunta qualquer.
+
+Prefere outra IA? Veja a tabela abaixo. O kit funciona igual.
+
+---
+
+## Começo rápido
+
+1. **Baixe o kit.** No terminal, dentro da pasta onde você guarda projetos:
+   ```
+   git clone https://github.com/Comunaider/SOIA-1h.git meu-soia
+   ```
+   Sem Git? Clique em **Code > Download ZIP** aqui no GitHub e descompacte.
+2. **Abra a pasta `meu-soia` no VS Code** e abra o terminal dentro dela.
+3. **Rode o agente** (`claude`, `codex`, `opencode`, `gemini`...) e digite `/onboard`, ou peça "faça meu onboarding". São 7 perguntas, cerca de 15 minutos. Amostras de voz devem ser **coladas** de algo que você já escreveu, não digitadas na hora.
+4. **Use por uma semana.** Traga perguntas reais do seu trabalho. Quando decidir algo, peça "registra essa decisão" (vai para `decisoes/registro.md`).
+5. **Dia 7:** rode `/audit`. Leia as 3 lacunas. Escolha uma para fechar.
+6. **Dia 14:** rode `/level-up`. A entrevista revela uma automação que vale construir. Construa.
+7. **Semana 3 em diante:** um `/level-up` por semana. Um artefato entregue por semana.
 
 ---
 
 ## Funciona com qualquer IA
 
-O kit nasceu no Claude Code, mas o manual operacional segue o padrão aberto **AGENTS.md** e as habilidades são markdown puro. Resultado: o mesmo repositório roda em qualquer agente de terminal.
+O manual do sistema segue o padrão aberto **AGENTS.md** e as habilidades são markdown puro. O mesmo repositório roda em qualquer agente de terminal.
 
-| Ferramenta | Manual que ela lê | Como invocar as habilidades |
+| Ferramenta | Manual que ela lê | Como chamar as habilidades |
 |---|---|---|
-| **Claude Code** | `CLAUDE.md` (importa `AGENTS.md`) | `/onboard`, `/audit`, `/level-up` nativos via `.claude/skills/` |
-| **OpenAI Codex CLI** | `AGENTS.md` | Peça em linguagem natural ("faça meu onboarding"). Prompts em `.codex/prompts/` - se a sua versão não carregar prompts do projeto, copie-os para `~/.codex/prompts/` e use `/onboard` |
-| **OpenCode** | `AGENTS.md` | `/onboard`, `/audit`, `/level-up` nativos via `.opencode/command/` |
-| **Gemini CLI** | `GEMINI.md` (importa `AGENTS.md`) | `/onboard`, `/audit`, `/level-up` nativos via `.gemini/commands/` |
-| **Cursor / Copilot / Amp / outros** | `AGENTS.md` | Peça em linguagem natural - o `AGENTS.md` roteia para o arquivo da habilidade |
+| **Claude Code** | `CLAUDE.md` (importa `AGENTS.md`) | `/onboard`, `/audit`, `/level-up` via `.claude/skills/` |
+| **OpenAI Codex** | `AGENTS.md` | Skills do projeto em `.agents/skills/`. Use `/skills` ou `$onboard`, ou peça em linguagem natural |
+| **OpenCode** | `AGENTS.md` | `/onboard`, `/audit`, `/level-up` via `.opencode/command/` |
+| **Gemini CLI** | `GEMINI.md` (importa `AGENTS.md`) | `/onboard`, `/audit`, `/level-up` via `.gemini/commands/` |
+| **Cursor / Copilot / outros** | `AGENTS.md` | Peça em linguagem natural. O `AGENTS.md` aponta o arquivo certo |
 
-Três regras mantêm isso sustentável:
+Três regras mantêm isso funcionando:
 
-1. **`AGENTS.md` é o manual canônico.** `CLAUDE.md` e `GEMINI.md` apenas o importam. Edite sempre o `AGENTS.md`.
-2. **`.claude/skills/*/SKILL.md` é a fonte única de cada habilidade.** Os arquivos em `.codex/`, `.opencode/` e `.gemini/` são wrappers finos que mandam ler o SKILL.md. Nunca duplique a lógica neles.
-3. **Linguagem natural sempre funciona.** Mesmo numa ferramenta sem comandos de barra, dizer "audite meu AIOS" dispara a habilidade - o `AGENTS.md` ensina a IA a rotear.
+1. **`AGENTS.md` é o manual canônico.** `CLAUDE.md` e `GEMINI.md` só importam. Edite sempre o `AGENTS.md`.
+2. **`.claude/skills/*/SKILL.md` é a fonte única de cada habilidade.** Os arquivos em `.agents/`, `.opencode/` e `.gemini/` são atalhos que mandam ler o SKILL.md. Nunca duplique a lógica neles.
+3. **Linguagem natural sempre funciona.** Dizer "audite meu sistema" dispara a habilidade em qualquer ferramenta.
 
 ---
 
 ## O teste decisivo
 
-> **"Enquanto você não está na mesa, seu AIS-OS observa um evento real e produz uma entrega mais rápida e mais precisa do que você produziria sozinho."**
+> **"Enquanto você não está na mesa, seu SOIA observa um evento real e produz uma entrega mais rápida e mais precisa do que você produziria sozinho."**
 
-Toda decisão de design neste kit converge para esse teste. Se uma camada, habilidade ou modelo não contribui para isso, ela não entra.
+Toda decisão de design do kit converge para esse teste.
 
 ---
 
 ## Como saber que está funcionando
 
-Três **indicadores de sucesso sentidos na prática** mostram que o AIOS está realmente mudando como você trabalha. Não são KPIs, não há uma métrica objetiva. São experiências vividas que aparecem na sua semana.
+Três sinais que aparecem na sua semana. Não são métricas, são experiências.
 
-**1. A equipe procura você:**
+**1. Você pergunta primeiro pro sistema.** Alguém te faz uma pergunta sobre o negócio e você percebe que o SOIA responde melhor e mais rápido, com a fonte. Você deixa de ser o gargalo do próprio conhecimento.
 
-> *"Um colega manda uma mensagem com uma pergunta. Você percebe que seu AIOS responderia melhor, mais rápido e com fontes exatas, mesmo se você estivesse acordado e livre. Então você também pergunta ao AIOS. Esse é o momento em que você deixa de ser gargalo do próprio conhecimento."*
+**2. Menos abas abertas.** Quando algo novo aparece, o primeiro movimento é perguntar ao SOIA, não abrir seis ferramentas.
 
-**2. Redução de troca de contexto:**
+**3. O conhecimento sai da sua cabeça.** Você para de tentar lembrar o que decidiu no mês passado ou o que o cliente disse na reunião. O sistema guarda a verdade. Você guarda as perguntas.
 
-> *"Você para de abrir novas abas. Você para de iniciar o app desktop. Quando algo novo aparece, seu primeiro movimento é perguntar ao AIOS, não abrir seis coisas. A superfície padrão para trabalho intelectual muda. Silenciosa. Cumulativa."*
-
-**3. O conhecimento sai da sua cabeça:**
-
-> *"Você para de tentar lembrar fatos do negócio. Você não ensaia o que decidiu no trimestre passado nem o que o cliente disse naquela reunião. Você confia na recuperação. O AIOS guarda a verdade; você guarda as perguntas."*
-
-**Base pessoal -> prontidão da empresa para IA.** Quando esses indicadores aparecem para uma pessoa, a mesma arquitetura de dados alimenta todo o resto. Dashboards personalizados sobre os dados que você já coleta. Automações em cima das conexões que você já configurou. Implantação para a equipe, onde cada pessoa tem o seu. *Uma empresa em que cada operador roda um AIOS pessoal é uma empresa realmente pronta para IA.*
-
-O kit ensina AIOS pessoal primeiro. Todo o resto escala a partir daí.
+Quando isso acontece com uma pessoa, a mesma estrutura serve para o resto: painéis sobre os dados que você já coleta, automações em cima das conexões que você já fez, e um SOIA por pessoa da equipe.
 
 ---
 
 ## Dois frameworks
 
-O kit ensina dois frameworks complementares. **Três Ms primeiro, Quatro Cs depois.** Sem a reprogramação do cérebro, a arquitetura é só uma estrutura de pastas.
+**Três Ms primeiro, Quatro Cs depois.** Sem mudar o jeito de pensar, a arquitetura é só uma estrutura de pastas.
 
-### Os Três Ms - cérebro do operador (como você pensa)
+### Os Três Ms - como você pensa
 
 | M | Resumo |
 |---|---|
@@ -70,89 +93,72 @@ O kit ensina dois frameworks complementares. **Três Ms primeiro, Quatro Cs depo
 | **Método** | Encontrar Restrição -> EAD (Eliminar, Automatizar, Delegar) -> Mapear Processo -> Escolher Nível de Autonomia -> Ligar a KPI. |
 | **Máquina** | Princípio Lego, Cadeia de Validação, Método da Bicicleta, Regra do Estagiário, Botão de Emergência. *Chato é bonito. Workflows vencem agentes.* |
 
-A explicação completa está em `referencias/framework-3ms.md`. A habilidade `/level-up` percorre os três semanalmente.
+Explicação completa em `referencias/framework-3ms.md`. O `/level-up` percorre os três toda semana.
 
 > *The Three Ms of AI(TM) é uma marca registrada de Nate Herk. © 2026 Nate Herk.*
 
-### Os Quatro Cs - arquitetura (o que você constrói)
+### Os Quatro Cs - o que você constrói
 
-| # | Camada | Resumo | Teste de "esta camada está pronta" |
+| # | Camada | Resumo | Teste de "está pronta" |
 |---|---|---|---|
-| 1 | **Contexto** | Conhece seu negócio | Uma sessão nova do Claude responde "o que este negócio faz e quem trabalha aqui?" sem navegar |
-| 2 | **Conexões** | Acessa suas coisas | "O que há no meu calendário amanhã e quais tarefas vencem?" -> dados ao vivo, sem colar nada |
-| 3 | **Capacidades** | Sabe fazer o trabalho | Uma frase curta dispara um workflow de várias etapas que produz um artefato |
-| 4 | **Cadência** | Roda sem ser solicitado | Notebook fechado. Um resumo chega na caixa de entrada. Um colega manda mensagem e recebe uma resposta real |
-
-**Linha de marca:** Contexto. Conexões. Capacidades. Cadência.
+| 1 | **Contexto** | Conhece seu negócio | Uma sessão nova responde "o que este negócio faz e quem trabalha aqui?" sem você explicar |
+| 2 | **Conexões** | Acessa suas coisas | "O que tenho na agenda amanhã e o que vence?" -> dado ao vivo, sem colar nada |
+| 3 | **Capacidades** | Sabe fazer o trabalho | Uma frase curta dispara um fluxo de várias etapas que entrega um arquivo pronto |
+| 4 | **Cadência** | Roda sem você pedir | Notebook fechado. Um resumo chega no seu WhatsApp ou e-mail |
 
 > *The Four Cs of an AIOS(TM) é uma marca registrada de Nate Herk. © 2026 Nate Herk.*
 
-Grafo de dependência: Contexto não pode ser pulado. Conexões + Capacidades podem ser construídas em paralelo. Cadência vem por último - não automatize workflows que ainda não funcionam manualmente.
+Ordem: Contexto não pode ser pulado. Conexões e Capacidades podem andar juntas. Cadência vem por último: não automatize o que ainda não funciona na mão.
 
 ---
 
-## O que vem no kit - 3 habilidades
+## As 3 habilidades do kit
 
-O kit é intencionalmente enxuto. As habilidades aqui são prompts de ideação e ferramentas de pensamento, não automações pesadas. Você constrói em cima da estrutura.
+O kit é enxuto de propósito. As habilidades são ferramentas de pensamento, não automações pesadas. Você constrói o resto em cima.
 
-| Habilidade | Tipo | Quando executar |
+| Habilidade | Tipo | Quando rodar |
 |---|---|---|
-| `/onboard` | Assistente de configuração (uma vez) | Dia 1, imediatamente após clonar. Entrevista de 7 perguntas. Gera o conjunto de arquivos do Dia 1 + preenche `CLAUDE.md`. |
-| `/audit` | Habilidade recorrente de pensamento | Dia 7, depois semanalmente. Relatório de lacunas dos Quatro Cs. Somente leitura. Veja a pontuação subir. |
-| `/level-up` | Habilidade recorrente de pensamento | Dia 14, depois semanalmente. Entrevista dos Três Ms (Mindset -> Método -> Máquina). Uma execução = um artefato entregue. |
+| `/onboard` | Configuração (uma vez) | Dia 1. Entrevista de 7 perguntas. Monta os arquivos de contexto e preenche o `AGENTS.md`. Pode rodar de novo quando quiser. |
+| `/audit` | Semanal | Dia 7, depois toda semana. Nota de 0 a 100 nos Quatro Cs e as 3 lacunas que mais rendem. Só lê, não altera nada. |
+| `/level-up` | Semanal | Dia 14, depois toda semana. Entrevista dos Três Ms. Uma execução = um artefato entregue. |
 
-`/audit` pergunta *"o AIOS foi construído corretamente?"* (forma). `/level-up` pergunta *"qual alavancagem de negócio estou deixando passar?"* (função). Elas trabalham em série - corrija a estrutura primeiro, então o planejamento de capacidades passa a fazer sentido.
-
----
-
-## Começo rápido
-
-1. **Clone o repositório** para uma pasta de trabalho na sua máquina.
-2. **Abra na sua IA de terminal** (Claude Code, Codex, OpenCode, Gemini CLI...) e execute `/onboard` - ou peça "faça meu onboarding". Responda às 7 perguntas com honestidade. Amostras de voz devem ser coladas, não descritas. Leva cerca de 15 minutos. O conjunto de arquivos do Dia 1 é criado ao final.
-3. **Use por uma semana.** Traga perguntas reais. Tome decisões reais. Registre-as via `/decision` ou apenas acrescente em `decisoes/registro.md`.
-4. **Dia 7:** execute `/audit`. Leia o relatório de lacunas dos Quatro Cs. Escolha uma lacuna para fechar.
-5. **Dia 14:** execute `/level-up`. A entrevista dos Três Ms revela uma automação que vale construir. Construa.
-6. **Semana 3+:** ritual semanal de `/level-up`. Um artefato entregue por semana.
+`/audit` pergunta *"o sistema foi montado direito?"*. `/level-up` pergunta *"que ganho estou deixando passar?"*. Corrija a estrutura primeiro, depois planeje capacidades.
 
 ---
 
 ## Estrutura do repositório
 
 ```
-AIS-OS/
+meu-soia/
 ├── README.md
-├── AGENTS.md                        <- Seu manual operacional canônico (preenchido pelo /onboard)
+├── LICENCA
+├── AGENTS.md                        <- Manual canônico do sistema (preenchido pelo /onboard)
 ├── CLAUDE.md                        <- Espelho para Claude Code (importa AGENTS.md)
 ├── GEMINI.md                        <- Espelho para Gemini CLI (importa AGENTS.md)
 ├── EXPANSOES.md                     <- O que adicionar conforme você cresce
-├── LICENCA
-├── .gitignore
-├── entrada-aios.md                  <- Fonte da verdade para /onboard. Edite + execute novamente quando quiser.
-├── conexoes.md                      <- Registro de todo sistema que seu AIOS pode acessar
+├── entrada-aios.md                  <- Respostas do /onboard. Edite e rode de novo quando quiser.
+├── conexoes.md                      <- Mapa de todo sistema que o SOIA acessa
 ├── contexto/                        <- Sobre você e seu negócio (preenchido pelo /onboard)
 ├── referencias/
-│   └── framework-3ms.md             <- O cérebro do operador
+│   └── framework-3ms.md             <- Como pensar sobre trabalho com IA
 ├── decisoes/
-│   └── registro.md                  <- Registro somente de acréscimo do que foi decidido e por quê
-├── arquivos/                        <- Coisas antigas. Não exclua. Mova para cá.
-├── .claude/
-│   └── skills/                      <- Fonte única das habilidades (markdown puro)
-│       ├── onboard/SKILL.md
-│       ├── audit/SKILL.md
-│       └── level-up/SKILL.md
-├── .codex/prompts/                  <- Atalhos /onboard /audit /level-up para Codex CLI
+│   └── registro.md                  <- O que foi decidido e por quê (só acrescenta)
+├── arquivos/                        <- Coisas antigas. Não exclua, mova para cá.
+├── .claude/skills/                  <- Fonte única das habilidades (markdown puro)
+│   ├── onboard/SKILL.md
+│   ├── audit/SKILL.md
+│   └── level-up/SKILL.md
+├── .agents/skills/                  <- Atalhos para Codex e outras IAs do padrão Agent Skills
 ├── .opencode/command/               <- Atalhos para OpenCode
 └── .gemini/commands/                <- Atalhos para Gemini CLI
 ```
 
-Veja `EXPANSOES.md` para saber o que adicionar conforme cresce (`projetos/`, `modelos/`, `scripts/`, `.claude/agents/`, pastas sub-OS etc.).
+Veja `EXPANSOES.md` para saber o que adicionar conforme cresce (`projetos/`, `modelos/`, `scripts/`, `processos/`, `.claude/agents/` etc.).
 
 ---
 
-## Licença + atribuição
+## Licença e atribuição
 
-Licença MIT. © 2026 Nate Herk.
+Licença MIT, texto completo em `LICENCA`. Kit original © 2026 Nate Herk. Adaptação © 2026 Gustavo Schineider.
 
-The Three Ms of AI(TM) e The Four Cs of an AIOS(TM) são marcas registradas de Nate Herk. Os dois frameworks acompanham este repositório com atribuição. Use livremente; não reempacote como se fossem seus.
-
-O vídeo de masterclass complementar percorre o kit passo a passo. O link será adicionado aqui quando for publicado.
+The Three Ms of AI(TM) e The Four Cs of an AIOS(TM) são marcas registradas de Nate Herk. Os dois frameworks acompanham este repositório com atribuição. Use livremente, mas não reempacote como se fossem seus.

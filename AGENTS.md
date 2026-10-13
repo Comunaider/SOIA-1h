@@ -42,7 +42,7 @@ Veja `EXPANSOES.md` para saber o que adicionar conforme você cresce.
 
 ## Voz
 
-Combine o registro em `referencias/voz.md`. Casual, mas profissional. Frases curtas. Sem travessões. Prefira bullets a parágrafos. Não finja minha voz em conteúdo externo (LinkedIn, e-mail para clientes) sem me mostrar um rascunho primeiro.
+Combine o registro em `referencias/voz.md`. {{Preenchido por /onboard a partir da Q2: 3-5 traços observados nas amostras coladas, como tom, tamanho de frase, vocabulário e o que a pessoa evita.}} Não finja minha voz em conteúdo externo (LinkedIn, e-mail para clientes) sem me mostrar um rascunho primeiro.
 
 ## Conexões
 
