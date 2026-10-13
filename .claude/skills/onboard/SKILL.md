@@ -1,6 +1,6 @@
 ---
 name: onboard
-description: Use no Dia 1 de uma instalação AIS-OS, quando alguém diz "configure para mim", "faça meu onboarding", "vamos começar", "preencha meu AIOS", ou acabou de clonar o kit. Assistente combinado - roda o intake de 7 perguntas E monta o conjunto de arquivos do Dia 1 ao final. Idempotente - execute novamente a qualquer momento após editar entrada-aios.md.
+description: Use no Dia 1 de uma instalação do SOIA, quando alguém diz "configure para mim", "faça meu onboarding", "vamos começar", "preencha meu AIOS", ou acabou de clonar o kit. Assistente combinado - roda o intake de 7 perguntas E monta o conjunto de arquivos do Dia 1 ao final. Idempotente - execute novamente a qualquer momento após editar entrada-aios.md.
 ---
 
 ## O que esta habilidade faz
@@ -45,7 +45,7 @@ Prioridades trimestrais. Questione se ele disser "crescer meu negócio" - faça 
 Várias respostas são aceitáveis. Mapeie para Domínio Tier-1 1 (Receita/Financeiro).
 
 **Q5 - Onde você conversa com clientes, equipe e mundo externo no dia a dia?**
-E-mail (Gmail/Outlook), Slack/Teams/Discord, DMs. Mapeie para Domínios 2 + 4.
+WhatsApp, Instagram Direct, e-mail (Gmail/Outlook), Slack/Teams. Mapeie para Domínios 2 + 4.
 
 **Q6 - Onde ficam gravações de reuniões, notas e documentos importantes?**
 Mapeie para Domínios 6 + 7.
@@ -63,8 +63,9 @@ Quando o intake estiver completo, gere estes arquivos (ou atualize se estiver re
 2. **`contexto/sobre-negocio.md`** - a partir da Q1 (oferta, ICP) + Q4 (modelo de receita). Um parágrafo.
 3. **`contexto/prioridades.md`** - a partir da Q3. Lista numerada, uma linha por prioridade.
 4. **`referencias/voz.md`** - a partir da Q2. Cole amostras literalmente com um cabeçalho curto explicando o uso ("Combine este registro ao rascunhar; não finja a voz em conteúdo externo sem me mostrar primeiro").
-5. **`conexoes.md`** - preencha a tabela de 7 linhas a partir das respostas Q4-Q7. Cada linha recebe `mecanismo: ainda não conectado`, `autenticação: -`, `última verificação: -`. O usuário conecta ferramentas no Dia 2.
+5. **`conexoes.md`** - preencha a tabela de 7 linhas a partir das respostas Q4-Q7. Cada linha recebe `como falo com ele: ainda não conectado`, `detalhe: -`, `verificado: -`. O usuário conecta ferramentas no Dia 2.
 6. **`AGENTS.md`** - preencha todos os placeholders `{{...}}`, incluindo a seção Voz com traços tirados das amostras da Q2 (nunca um estilo genérico). Substitua o nome do usuário, prioridade declarada, resumo do registro de voz e um breve resumo de conexões. Não toque em `CLAUDE.md` nem `GEMINI.md` - são espelhos que apenas importam `AGENTS.md`.
+7. **`decisoes/registro.md`** - acrescente a primeira entrada, no formato do arquivo: `## {AAAA-MM-DD} - Instalei o SOIA`, com a decisão (usar o SOIA como sistema de trabalho), o porquê (a prioridade nº 1 da Q3) e o responsável (o usuário). Na reexecução, não duplique: só acrescente se ainda não existir.
 
 ### Etapa 4: A tela de fechamento
 

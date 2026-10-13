@@ -15,7 +15,7 @@ A estrutura do AIOS deve parecer uma pequena empresa bem administrada. Não o po
 | `decisoes/registro.md` | Registro somente de acréscimo do que foi decidido e por quê. |
 | `arquivos/` | Arquivos antigos. Não exclua - mova para cá. |
 | `conexoes.md` | Registro de todo sistema que seu AIOS pode acessar. |
-| `.claude/skills/` | Suas habilidades: `/onboard`, `/audit`, `/level-up`. Adicione mais via `/level-up`. |
+| `.claude/skills/` | Suas habilidades: `/onboard`, `/audit`, `/level-up`. Adicione mais via `/level-up`. Atalhos para outras IAs em `.agents/skills/`, `.opencode/command/` e `.gemini/commands/`. |
 | `entrada-aios.md` | Fonte da verdade para `/onboard`. Edite e execute novamente quando quiser. |
 | `AGENTS.md` | Manual operacional raiz (padrão multi-IA). Preenchido por `/onboard`. Edite quando seu papel/voz mudar. `CLAUDE.md` e `GEMINI.md` são espelhos que apenas o importam. |
 
@@ -31,6 +31,7 @@ A estrutura do AIOS deve parecer uma pequena empresa bem administrada. Não o po
 | `referencias/sops/` | Você documenta como processos recorrentes rodam | Procedimentos operacionais padrão que o AIOS lê para executar com consistência |
 | `referencias/{ferramenta}-api.md` | Você conecta uma nova API ou MCP e descobre como ela funciona | Pesquisado uma vez, salvo para sempre. `/audit` recompensa isso; habilidades futuras não pesquisam tudo de novo. |
 | `scripts/` | Você escreve Python ou Bash para chamar APIs não cobertas por MCPs | A segunda conexão da maioria das pessoas é um script, não um MCP |
+| `processos/` | Você quer enxergar o negócio como sistemas (vendas, entrega, financeiro...) e medir quanto de cada um já roda com IA | Um arquivo por função, com métrica única e nível de maturidade: N0 inexistente, N1 na cabeça, N2 escrito, N3 assistido por IA, N4 roda sozinho, N5 aprende sozinho. Nunca pule de N1 para N4 sem escrever o processo (N2) antes |
 | `.claude/agents/` | Você precisa de um subassistente para pesquisa/escrita repetível de várias etapas | Agentes rodam em modelos mais baratos no próprio contexto - mantenha a sessão principal enxuta (no OpenCode o equivalente é `.opencode/agent/`) |
 | Pastas sub-OS (ex.: `youtube-os/`) | Você tem uma vertical com dados, planilhas, transcrições e scripts próprios | Padrão de isolamento - workflows verticais recebem seu próprio manual operacional delimitado + habilidades |
 

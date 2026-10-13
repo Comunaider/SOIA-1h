@@ -1,1 +1,0 @@
-Leia o arquivo `.claude/skills/onboard/SKILL.md` e siga as instruções exatamente, do início ao fim. Ele é a fonte única desta habilidade (onboarding do AIOS: entrevista de 7 perguntas + montagem dos arquivos do Dia 1) - este arquivo é só um atalho.

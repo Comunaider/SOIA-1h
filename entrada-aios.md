@@ -1,4 +1,4 @@
-# Intake do AIS-OS
+# Intake do SOIA
 
 Este é o arquivo fonte da verdade do seu AIOS. Preencha digitando, colando por voz (Wispr Flow / ditado do sistema operacional) ou executando `/onboard` para uma conversa guiada. Seja qual for o modo, este arquivo é o que `/onboard` lê para montar sua configuração do Dia 1.
 
@@ -32,7 +32,7 @@ Um e-mail, um post no LinkedIn, uma DM, um documento - qualquer coisa que soe co
 
 ## Q3 - Quais são suas 2-3 maiores prioridades para os próximos 90 dias?
 
-Prioridades trimestrais. Não aspirações anuais. Coisas que, se não forem feitas até julho, fariam você dizer "desperdicei o Q2".
+Prioridades trimestrais. Não aspirações anuais. Coisas que, se não estiverem feitas daqui a 90 dias, fariam você dizer "perdi o trimestre".
 
 ```
 1. [Prioridade 1]
@@ -44,7 +44,7 @@ Prioridades trimestrais. Não aspirações anuais. Coisas que, se não forem fei
 
 ## Q4 - Onde a receita realmente cai e onde ela é acompanhada?
 
-Várias respostas são aceitáveis. Stripe? Skool? GoHighLevel? QuickBooks? Uma planilha?
+Várias respostas são aceitáveis. Pix direto na conta? Mercado Pago, Asaas, PagSeguro? Hotmart, Kiwify? Maquininha? Sistema de gestão (Bling, Conta Azul)? Uma planilha? Um caderno?
 
 ```
 [Sua resposta aqui]
@@ -54,7 +54,7 @@ Várias respostas são aceitáveis. Stripe? Skool? GoHighLevel? QuickBooks? Uma 
 
 ## Q5 - Onde você conversa com clientes, equipe e mundo externo no dia a dia?
 
-E-mail (qual - Gmail / Outlook)? Slack? Teams? DMs (Skool / Discord / iMessage)? Telefone?
+WhatsApp (pessoal ou Business)? Instagram Direct? E-mail (Gmail / Outlook)? Grupos? Slack ou Teams? Telefone?
 
 ```
 [Sua resposta aqui]
@@ -64,7 +64,7 @@ E-mail (qual - Gmail / Outlook)? Slack? Teams? DMs (Skool / Discord / iMessage)?
 
 ## Q6 - Onde ficam gravações de reuniões, notas e documentos importantes?
 
-Granola? Otter? Fireflies? Google Drive? Notion? Dropbox? Uma pasta na área de trabalho que você vive querendo organizar?
+Google Meet com gravação? tl;dv, Fireflies, Otter? Áudios no WhatsApp? Google Drive, OneDrive, Notion? Uma pasta na área de trabalho que você vive querendo organizar?
 
 ```
 [Sua resposta aqui]
@@ -74,7 +74,7 @@ Granola? Otter? Fireflies? Google Drive? Notion? Dropbox? Uma pasta na área de 
 
 ## Q7 - Qual é a tarefa que consome sua semana e onde você acompanha o trabalho hoje?
 
-A maior fonte única de perda de tempo ou tarefa recorrente chata. Além disso, onde tarefas/projetos ficam (ClickUp / Asana / Linear / Notion / um caderno).
+A maior fonte única de perda de tempo ou tarefa recorrente chata. Além disso, onde tarefas/projetos ficam (Trello / Notion / ClickUp / Google Agenda / planilha / um caderno / a cabeça).
 
 ```
 [Sua resposta aqui]
