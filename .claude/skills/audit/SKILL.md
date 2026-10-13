@@ -33,7 +33,7 @@ A auditoria procura **padrões e intenção**, não caminhos exatos. Nomes de ar
 
 **Manual operacional:** `AGENTS.md` (raiz, canônico), `CLAUDE.md` / `GEMINI.md` (espelhos que só importam), `CLAUDE.local.md` (gitignored).
 **Memória:** `MEMORY.md` (raiz), `~/.claude/projects/<id>/memory/MEMORY.md` ou pasta `memory/`.
-**Habilidades:** `.claude/skills/*/SKILL.md` - contagem + frontmatter. Wrappers em `.codex/prompts/`, `.opencode/command/` e `.gemini/commands/` apontam para a mesma habilidade - não conte em dobro.
+**Habilidades:** `.claude/skills/*/SKILL.md` - contagem + frontmatter. Atalhos em `.agents/skills/`, `.opencode/command/` e `.gemini/commands/` apontam para a mesma habilidade - não conte em dobro.
 **Agentes:** `.claude/agents/*.md` - contagem + frontmatter.
 **Mecanismos de conexão** (qualquer um destes = "acessível"):
 - MCPs: `.mcp.json`, `.claude/settings.json` (chave mcpServers), `.claude/settings.local.json`, `.codex/config.toml`, `opencode.json`, `.gemini/settings.json`
@@ -46,7 +46,7 @@ A auditoria procura **padrões e intenção**, não caminhos exatos. Nomes de ar
 **Decisões:** `decisoes/registro.md`, `decisoes.md` ou qualquer arquivo de decisões somente de acréscimo.
 **Referências / SOPs:** pastas `referencias/`, `docs/`, `sops/`.
 **Templates:** `modelos/`, `.claude/templates/`.
-**Hooks / jobs agendados:** chave hooks em `.claude/settings.json`, ou nomes de habilidades que combinem com `morning-*`, `weekly-*`, `daily-*`, `monthly-*`, `standup`.
+**Rotinas agendadas:** rotinas do `/schedule` do Claude Code, tarefas do Agendador de Tarefas do Windows, `cron` ou `systemd` documentados no `AGENTS.md` ou em `conexoes.md`, `.github/workflows/*.yml` com `schedule:`, ou nomes de habilidades que combinem com `morning-*`, `weekly-*`, `daily-*`, `monthly-*`, `standup`. Hook de `.claude/settings.json` sozinho não é rotina: ele reage a um evento da sessão, não roda com o notebook fechado.
 
 Não penalize nomes não canônicos se a intenção equivalente estiver capturada em outro lugar.
 
@@ -70,13 +70,13 @@ Uma conexão "acessível" conta por QUALQUER mecanismo: MCP, script, pipeline de
 
 | # | Domínio | Exemplos |
 |---|---|---|
-| 1 | Receita / Financeiro | Stripe, Skool, GoHighLevel, QuickBooks, Looker |
-| 2 | Interações com clientes | HubSpot, Salesforce, Gmail como CRM, Skool DMs |
-| 3 | Calendário | Google Cal, Outlook, Calendly |
-| 4 | Comunicação | Gmail, Outlook, Slack, Teams |
-| 5 | Gestão de projetos / tarefas | ClickUp, Asana, Linear, Notion DB, Jira |
-| 6 | Inteligência de reuniões | Granola, Otter, Fireflies, Gong, Zoom |
-| 7 | Conhecimento / arquivos | Notion, Drive, Dropbox, Confluence, SharePoint |
+| 1 | Receita / Financeiro | Extrato/Pix do banco, Mercado Pago, Asaas, Hotmart, Kiwify, Stripe, Bling, Conta Azul, planilha de vendas |
+| 2 | Interações com clientes | WhatsApp Business, Instagram Direct, Kommo, RD Station, HubSpot, planilha de clientes |
+| 3 | Calendário | Google Agenda, Outlook, Calendly |
+| 4 | Comunicação | WhatsApp, Gmail, Outlook, Slack, Teams |
+| 5 | Gestão de projetos / tarefas | Trello, Notion, ClickUp, Asana, planilha de tarefas |
+| 6 | Inteligência de reuniões | Google Meet (gravação/transcrição), tl;dv, Fireflies, Otter, Zoom |
+| 7 | Conhecimento / arquivos | Google Drive, OneDrive, Notion, Dropbox, SharePoint |
 
 **Tier-2 (bônus):** chaves de API de serviços de IA (OpenRouter, Anthropic, OpenAI), decisões/histórico, conteúdo/publicação.
 
@@ -93,14 +93,14 @@ Uma conexão "acessível" conta por QUALQUER mecanismo: MCP, script, pipeline de
 | Critério | Pontos | Como detectar |
 |---|---|---|
 | 3+ habilidades instaladas | 10 | Conte `.claude/skills/*/SKILL.md` |
-| 1+ habilidade criada pelo usuário | 10 | Nomes de habilidades que não estejam em: `onboard`, `audit`, `level-up`, `skill-creator`, `skill-builder`, `decision`, `connect`, `connect-check`, `memory-prune`, `scaffold-skill`, `scaffold-agent`, `draft`, `standup` (AIS-OS canônico + habilidades enviadas pela Anthropic) |
+| 1+ habilidade criada pelo usuário | 10 | Nomes de habilidades que não estejam em: `onboard`, `audit`, `level-up`, `skill-creator`, `skill-builder`, `decision`, `connect`, `connect-check`, `memory-prune`, `scaffold-skill`, `scaffold-agent`, `draft`, `standup` (kit canônico + habilidades enviadas pela Anthropic) |
 | 1+ agente definido | 5 | Conte `.claude/agents/*.md` >= 1 |
 
 #### Cadência (25 pts)
 
 | Critério | Pontos | Como detectar |
 |---|---|---|
-| 1+ gatilho recorrente/agendado | 10 | hooks em `.claude/settings.json`, OU nome de habilidade combina com `morning-*` / `daily-*` / `weekly-*` / `monthly-*` / `standup` |
+| 1+ rotina agendada | 10 | Alguma rotina agendada da Etapa 1 documentada no projeto, OU nome de habilidade combina com `morning-*` / `daily-*` / `weekly-*` / `monthly-*` / `standup` |
 | Atividade recente / sinal de uso | 10 | Arquivos em `.claude/skills/` modificados nos últimos 30 dias, OU `decisoes/registro.md` tem entrada nos últimos 30 dias |
 | Pasta de templates populada | 5 | `modelos/` ou `.claude/templates/` tem >=1 arquivo |
 
@@ -113,7 +113,7 @@ Para cada critério que perdeu pontos: alavancagem = (pontos perdidos) x (multip
 - Manual operacional ausente ou raso: **3x** (fundação)
 - <=2 domínios tier-1 acessíveis: **3x** (Conexões é a porta de entrada para dados ao vivo)
 - 0 habilidades: **2x** (sem Capacidades = sem AIOS)
-- Sem gatilho recorrente: **2x** (sem Cadência = sem autonomia)
+- Sem rotina agendada: **2x** (sem Cadência = sem autonomia)
 - Todas as conexões somente leitura: **2x** (visualizador, não OS)
 - 0 guias de referência para ferramentas conectadas: **1,5x** (toda habilidade futura pesquisa as mesmas APIs de novo)
 - Sem log de decisões: **1,5x**
@@ -124,7 +124,7 @@ Ordene lacunas por alavancagem decrescente. Pegue as 3 principais. Para cada uma
 - **Precisa registrar uma decisão?** "Acrescente em `decisoes/registro.md`."
 - **Precisa acessar um domínio tier-1?** Prefira API+script (escreva `scripts/{ferramenta}_api.py` + salve `referencias/{ferramenta}-api.md`). Recomende MCP (`claude mcp add`, `codex mcp add` ou o equivalente da sua ferramenta) somente se não houver caminho por API.
 - **Ferramenta conectada sem guia de referência?** "Pesquise a API uma vez, salve endpoints + auth + consultas comuns em `referencias/{ferramenta}-api.md`."
-- **Precisa de gatilho recorrente?** "Adicione um hook em `.claude/settings.json`, ou escreva uma habilidade chamada `daily-*` que você roda toda manhã."
+- **Precisa de rotina agendada?** "Pegue a habilidade que já funciona na mão e agende: `/schedule` no Claude Code (roda na nuvem, notebook fechado), Agendador de Tarefas do Windows ou `cron`. Registre o agendamento em `conexoes.md`. Não agende o que ainda não roda bem manualmente."
 
 ### Etapa 4: Emitir o relatório
 
@@ -177,4 +177,4 @@ Depois de imprimir, pergunte: "Salvar esta auditoria em `auditorias/auditoria-{d
 - **Seja honesto, não generoso.** 95/100 é um flex. A maioria das configurações cai entre 40-70.
 - **Não sugira habilidades que não existem.** Aponte para o que está realmente disponível.
 - **Velocidade importa.** Relatório em menos de 60 segundos de relógio. Leia arquivos direcionados, conte pastas de habilidades sem ler cada uma por inteiro (somente frontmatter).
-- **Detecção de cadência é difusa.** Infira por nomes de habilidades se hooks/cron não estiverem claros.
+- **Detecção de cadência é difusa.** Infira por nomes de habilidades se as rotinas agendadas não estiverem documentadas.

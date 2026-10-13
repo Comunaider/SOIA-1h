@@ -108,7 +108,7 @@ Pergunte: *"Como você quer entregar isto?"* Opções ordenadas pelo padrão Cha
 Depois de escolhido, direcione ao scaffolder apropriado:
 - `skill-creator` se disponível globalmente (enviado pela Anthropic)
 - `skill-builder` se o usuário tiver localmente
-- Caso contrário, escreva um SKILL.md / arquivo de agente diretamente com frontmatter, localização e conteúdo. Se o operador usa outras IAs além do Claude Code, crie também wrappers finos em `.codex/prompts/`, `.opencode/command/` e `.gemini/commands/` apontando para o novo SKILL.md (padrão do kit - a lógica vive num lugar só)
+- Caso contrário, escreva um SKILL.md / arquivo de agente diretamente com frontmatter, localização e conteúdo. Se o operador usa outras IAs além do Claude Code, crie também atalhos finos em `.agents/skills/<nome>/SKILL.md` (Codex e outras IAs do padrão Agent Skills, com o mesmo `name` e `description` no frontmatter), `.opencode/command/` e `.gemini/commands/` apontando para o novo SKILL.md (padrão do kit - a lógica vive num lugar só)
 
 **Todo artefato montado vem com estes dois cabeçalhos no topo:**
 
@@ -126,6 +126,12 @@ Mostre os princípios de Máquina ao montar:
 - **Princípio Lego** - menores etapas, sem IA primeiro se possível
 - **Cadeia de Validação** - teste cada etapa antes de encadear
 - **Mentalidade de Iteração** - entregue o POC, expanda a partir do uso real
+
+Se o artefato vai rodar sozinho (agendado ou disparado por evento), ele nasce com três travas:
+
+- **Modo teste por padrão.** A primeira versão mostra o que faria (mensagem que mandaria, linha que gravaria) sem fazer. Executar de verdade exige uma opção explícita, como `--executar`.
+- **Fonte fora do ar avisa, nunca vira zero.** Se uma conexão falhar (token vencido, planilha movida, API fora), o artefato diz "AVISO: X caiu" em vez de entregar um resultado vazio. Zero silencioso parece "não tinha nada pra fazer" e esconde a falha por semanas.
+- **Nunca apaga.** Antes de sobrescrever ou remover, liste o que existe no destino. O que sai vai para `arquivos/`. Se o destino já existir e não for do próprio artefato, pare e pergunte.
 
 ## Contrato de saída
 
@@ -149,9 +155,9 @@ Toda execução de `/level-up` produz:
 
 ## Verificação (para o implementador)
 
-- **Dry run no Herk-2 do Nate** sem prompt. Esperado: a habilidade revela 2-3 candidatos puxados da atividade recente, prioridades e top_pain dele. Saída genérica ("você deveria construir um resumo") = falha.
+- **Dry run num SOIA já em uso** sem prompt. Esperado: a habilidade revela 2-3 candidatos puxados da atividade recente, prioridades e top_pain dele. Saída genérica ("você deveria construir um resumo") = falha.
 - **Teste eliminar-primeiro.** Alimente um candidato obviamente eliminável. Esperado: a habilidade sugere Eliminar, encerra e registra a vitória.
-- **Teste de questionamento L4.** Usuário pede respondedor autônomo de e-mail na primeira construção. Esperado: a habilidade insiste em L1/L2 primeiro, não entrega L4 sem override explícito.
+- **Teste de questionamento L4.** Usuário pede respondedor autônomo de WhatsApp ou e-mail na primeira construção. Esperado: a habilidade insiste em L1/L2 primeiro, não entrega L4 sem override explícito.
 - **Teste Chato-é-Bonito.** Candidato resolvível com Python determinístico. Esperado: a habilidade recomenda `(2) habilidade determinística` como padrão.
 - **Antipulo do Método da Bicicleta.** Usuário monta, pede para avançar para Fase 4 imediatamente. Esperado: a habilidade faz ele ler o que cada fase significa e confirmar que validou as fases inferiores.
 
